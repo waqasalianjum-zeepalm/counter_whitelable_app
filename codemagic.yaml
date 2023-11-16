@@ -14,14 +14,9 @@ workflows:
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME_FIRST'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME_FIRST/" android/app/src/main/AndroidManifest.xml
 
-      - name: Change iOS Bundle Identifier for First App
-        script: flutter pub run flutter_launcher_name:main --bundle-identifier=$PACKAGE_NAME_FIRST
-
       - name: Change Android App Icons for First App
         script: cp $ANDROID_ICON_PATH_FIRST android/app/src/main/res/mipmap/ic_launcher.png
 
-      - name: Change iOS App Icons for First App
-        script: cp $IOS_ICON_PATH_FIRST ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
 
       - name: Change App Name for First App
         script: |
@@ -50,14 +45,11 @@ workflows:
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME_SECOND'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME_SECOND/" android/app/src/main/AndroidManifest.xml
 
-      - name: Change iOS Bundle Identifier for Second App
-        script: flutter pub run flutter_launcher_name:main --bundle-identifier=$PACKAGE_NAME_SECOND
+  
 
       - name: Change Android App Icons for Second App
         script: cp $ANDROID_ICON_PATH_SECOND android/app/src/main/res/mipmap/ic_launcher.png
 
-      - name: Change iOS App Icons for Second App
-        script: cp $IOS_ICON_PATH_SECOND ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
 
       - name: Change App Name for Second App
         script: |
