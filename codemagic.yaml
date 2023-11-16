@@ -6,7 +6,6 @@ max_build_duration: 100
 environment:
 groups:
 keystore_credentials
-- app_store_credentials
 vars:
 GOOGLE PLAY TRACK: "beta"
 flutter: stable
@@ -17,8 +16,3 @@ npm: 6.13.7
 ndk: r21d
 java: 1.8
 ruby: 2.7.2
-cache:
-cache_paths:
-$HOME/.gradle/caches
-$FLUTTER_ROOT/.pub-cache
-- $HOME/Library/Caches/CocoaPods
