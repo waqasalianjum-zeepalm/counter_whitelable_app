@@ -34,7 +34,7 @@ workflows:
         script: flutter build apk 
       - name: Copy APK to Desktop
         ## copy the apk to the root page into Cartisan/Builds folder, use relative path
-        script: cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/Cartisan/Builds/app-release.apk
+        script: mkdir  ~/Desktop/Cartisan/Builds/; cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/Cartisan/Builds/app-release.apk
 
   secondApp-workflow:
     name: Second App Workflow
