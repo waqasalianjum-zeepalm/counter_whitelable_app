@@ -36,7 +36,7 @@ workflows:
       - name: Copy APK to artifacts 
         script: |
           mkdir -p ~/output_apks
-          cp build/app/outputs/flutter-apk/app-release-*.apk ~/output_apks/  
+            build/app/outputs/flutter-apk/app-release-*.apk ~/output_apks/  
 
   secondApp-workflow:
     name: Second App Workflow
