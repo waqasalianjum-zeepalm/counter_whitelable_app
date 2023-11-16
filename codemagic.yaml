@@ -7,17 +7,17 @@ workflows:
 
     scripts:
       - name: Install dependencies for First App
-        script: flutter pub get
+        script: |
+          flutter pub get
+          flutter pub global activate rename; export PATH=“$PATH”:“$HOME/.pub-cache/bin”
 
       - name: Change name for First App
         script: |
-         flutter pub global activate rename; export PATH=“$PATH”:“$HOME/.pub-cache/bin”
          rename setAppName --targets ios,android --value "WLTest1";
 
 
       - name: Change package name for First App
-        script: |
-         flutter pub global activate rename; export PATH=“$PATH”:“$HOME/.pub-cache/bin”
+        script: |       
          rename setBundleId --targets ios,android --value "com.zeepalm.welTestOne"
 
 
