@@ -3,3 +3,6 @@ workflows:
     name: Hello world workflow
     scripts:
         - echo "Hello World!"
+scripts:
+  - name: Build for iOS         
+    script: flutter build ios  
