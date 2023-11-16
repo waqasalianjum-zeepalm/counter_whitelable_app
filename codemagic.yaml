@@ -1,11 +1,43 @@
 workflows:
-  hello-world:
-    name: Hello world workflow
+  build-and-whitelabel:
+    name: Build and White-label
+    environment:
+      flutter: stable
+
     scripts:
-        - echo "Hello World!"
-scripts:
-  - name: Build for iOS         
-    script: flutter build ios      
-script: | 
-    echo "android {  defaultConfig { applicationId '${PACKAGE_NAME}' }  }" > android/changePackage.gradle
-    echo "apply from: rootProject.file('changePackage.gradle')" >> android/app/build.gradle
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Change Android Package Name
+        script: |
+          # Replace 'com.example.newpackage' with your desired package name
+          sed -i '' 's/applicationId: "com.example"/applicationId: "com.example.waqasalianjum"/' android/app/build.gradle
+          sed -i '' 's/com.example/com.example.waqasalianjum/' android/app/src/main/AndroidManifest.xml
+
+      - name: Change iOS Bundle Identifier
+        script: |
+          # Replace 'com.example.newbundle' with your desired bundle identifier
+          flutter pub run flutter_launcher_name:main --bundle-identifier=com.example.newbundle
+
+      - name: Change Android App Icons
+        script: |
+          # Replace 'path_to_your_new_android_icon.png' with the path to your new Android icon
+          cp path_to_your_new_android_icon.png android/app/src/main/res/mipmap/ic_launcher.png
+
+      - name: Change iOS App Icons
+        script: |
+          # Replace 'path_to_your_new_ios_icon.png' with the path to your new iOS icon
+          cp path_to_your_new_ios_icon.png ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
+
+      - name: Change Android App Name
+        script: |
+          # Replace 'NewAppName' with your desired Android app name
+          sed -i '' 's/android:label="OldAppName"/android:label="NewAppName"/' android/app/src/main/AndroidManifest.xml
+
+      - name: Change iOS App Name
+        script: |
+          # Replace 'NewAppName' with your desired iOS app name
+          flutter pub run flutter_launcher_name:main --app-name=NewAppName
+
+      - name: Run tests
+        script: flutter test
