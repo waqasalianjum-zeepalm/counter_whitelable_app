@@ -16,8 +16,8 @@ workflows:
 
       - name: Change App Name for First App
         script: |
-          sed -i '' "s/android:label=\"OldAppName\"/android:label=\"$APP_NAME_FIRST\"/" android/app/src/main/AndroidManifest.xml
-          flutter pub run flutter_launcher_name:main --app-name=$APP_NAME_FIRST
+          sed -i '' "s/android:label=\"counter_whitelabel_app\"/android:label="name is waqas" android/app/src/main/AndroidManifest.xml
+          flutter pub run flutter_launcher_name:main --app-name=name is waqas
 
       - name: Apply Theme Color for First App
         script: |
