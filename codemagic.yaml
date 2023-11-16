@@ -14,10 +14,6 @@ workflows:
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME_FIRST'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME_FIRST/" android/app/src/main/AndroidManifest.xml
 
-      - name: Change Android App Icons for First App
-        script: cp $ANDROID_ICON_PATH_FIRST android/app/src/main/res/mipmap/ic_launcher.png
-
-
       - name: Change App Name for First App
         script: |
           sed -i '' "s/android:label=\"OldAppName\"/android:label=\"$APP_NAME_FIRST\"/" android/app/src/main/AndroidManifest.xml
@@ -44,12 +40,6 @@ workflows:
         script: |
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME_SECOND'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME_SECOND/" android/app/src/main/AndroidManifest.xml
-
-  
-
-      - name: Change Android App Icons for Second App
-        script: cp $ANDROID_ICON_PATH_SECOND android/app/src/main/res/mipmap/ic_launcher.png
-
 
       - name: Change App Name for Second App
         script: |
