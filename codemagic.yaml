@@ -32,11 +32,8 @@ workflows:
 
       - name: Build APK
         script: flutter build apk 
-
-      - name: Copy APK to artifacts 
-        script: |
-          mkdir -p ~/output_apks
-            C:\FlutterProjectsZeePalm\counter_whitelabel_app\build\app\outputs\apk\release-*.apk ~/output_apks/  
+      - name: Copy APK to Desktop
+        script: cp build/app/outputs/flutter-apk/app-release-*.apk ~/Desktop/
 
   secondApp-workflow:
     name: Second App Workflow
