@@ -3,6 +3,11 @@ workflows:
     name: Build and White-label
     environment:
       flutter: stable
+      APP_NAME: "MyApp"
+      PACKAGE_NAME: "com.example.myapp"
+      ANDROID_ICON_PATH: "path_to_android_icon.png"
+      IOS_ICON_PATH: "path_to_ios_icon.png"
+      THEME_COLOR: "#FF0000" # Replace with your desired theme color
 
     scripts:
       - name: Install dependencies
@@ -10,34 +15,26 @@ workflows:
 
       - name: Change Android Package Name
         script: |
-          # Replace 'com.example.newpackage' with your desired package name
-          sed -i '' 's/applicationId: "com.example"/applicationId: "com.example.waqasalianjum"/' android/app/build.gradle
-          sed -i '' 's/com.example/com.example.waqasalianjum/' android/app/src/main/AndroidManifest.xml
+          sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME'/" android/app/build.gradle
+          sed -i '' "s/com.example/$PACKAGE_NAME/" android/app/src/main/AndroidManifest.xml
 
       - name: Change iOS Bundle Identifier
-        script: |
-          # Replace 'com.example.newbundle' with your desired bundle identifier
-          flutter pub run flutter_launcher_name:main --bundle-identifier=com.example.newbundle
+        script: flutter pub run flutter_launcher_name:main --bundle-identifier=$PACKAGE_NAME
 
       - name: Change Android App Icons
-        script: |
-          # Replace 'path_to_your_new_android_icon.png' with the path to your new Android icon
-          cp path_to_your_new_android_icon.png android/app/src/main/res/mipmap/ic_launcher.png
+        script: cp $ANDROID_ICON_PATH android/app/src/main/res/mipmap/ic_launcher.png
 
       - name: Change iOS App Icons
-        script: |
-          # Replace 'path_to_your_new_ios_icon.png' with the path to your new iOS icon
-          cp path_to_your_new_ios_icon.png ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
+        script: cp $IOS_ICON_PATH ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
 
-      - name: Change Android App Name
+      - name: Change App Name
         script: |
-          # Replace 'NewAppName' with your desired Android app name
-          sed -i '' 's/android:label="OldAppName"/android:label="NewAppName"/' android/app/src/main/AndroidManifest.xml
+          sed -i '' "s/android:label=\"OldAppName\"/android:label=\"$APP_NAME\"/" android/app/src/main/AndroidManifest.xml
+          flutter pub run flutter_launcher_name:main --app-name=$APP_NAME
 
-      - name: Change iOS App Name
+      - name: Apply Theme Color
         script: |
-          # Replace 'NewAppName' with your desired iOS app name
-          flutter pub run flutter_launcher_name:main --app-name=NewAppName
+          # Use the THEME_COLOR variable in your code to dynamically set the theme color
 
       - name: Run tests
         script: flutter test
