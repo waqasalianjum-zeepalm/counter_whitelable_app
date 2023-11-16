@@ -1,6 +1,8 @@
 workflows:
   firstApp-workflow:
     name: First App Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m1
     environment:
       flutter: stable
      
@@ -32,9 +34,9 @@ workflows:
 
       - name: Build APK
         script: flutter build apk 
-      - name: Copy APK to Desktop
-        ## copy the apk to the root page into Cartisan/Builds folder, use relative path
-        script: mkdir  ~/Desktop/Cartisan/Builds/; cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/Cartisan/Builds/app-release.apk
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - flutter_drive.log
 
   secondApp-workflow:
     name: Second App Workflow
