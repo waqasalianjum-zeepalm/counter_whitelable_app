@@ -3,7 +3,7 @@ workflows:
     name: First App Workflow
     environment:
       flutter: stable
-      APP_NAME_FIRST: "FirstApp"
+      App: "FirstApp"
       PACKAGE_NAME_FIRST: "com.example.firstapp"
       ANDROID_ICON_PATH_FIRST: "path_to_firstapp_android_icon.png"
       IOS_ICON_PATH_FIRST: "path_to_firstapp_ios_icon.png"
