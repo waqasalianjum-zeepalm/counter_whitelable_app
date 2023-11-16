@@ -1,0 +1,4 @@
+workflow:
+hello_world:
+scripts:
+- echo "Hello world!"
