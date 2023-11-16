@@ -5,8 +5,7 @@ workflows:
         - echo "Hello World!"
 scripts:
   - name: Build for iOS         
-    script: flutter build ios  
-    
+    script: flutter build ios      
 - name: Change Android package name
   script: | 
     echo "android {  defaultConfig { applicationId '${PACKAGE_NAME}' }  }" > android/changePackage.gradle
