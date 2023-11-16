@@ -1,40 +1,84 @@
 workflows:
-  build-and-whitelabel:
-    name: Build and White-label
+  firstApp-workflow:
+    name: First App Workflow
     environment:
       flutter: stable
-      APP_NAME: "MyApp"
-      PACKAGE_NAME: "com.example.myapp"
-      ANDROID_ICON_PATH: "path_to_android_icon.png"
-      IOS_ICON_PATH: "path_to_ios_icon.png"
-      THEME_COLOR: "#FF0000" # Replace with your desired theme color
+      groups:
+        - app: firstApp
+          APP_NAME: "FirstApp"
+          PACKAGE_NAME: "com.example.firstapp"
+          ANDROID_ICON_PATH: "path_to_firstapp_android_icon.png"
+          IOS_ICON_PATH: "path_to_firstapp_ios_icon.png"
+          THEME_COLOR: "#FF0000" # Replace with your desired theme color for firstApp
 
     scripts:
-      - name: Install dependencies
+      - name: Install dependencies for First App
         script: flutter pub get
 
-      - name: Change Android Package Name
+      - name: Change Android Package Name for First App
         script: |
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME/" android/app/src/main/AndroidManifest.xml
 
-      - name: Change iOS Bundle Identifier
+      - name: Change iOS Bundle Identifier for First App
         script: flutter pub run flutter_launcher_name:main --bundle-identifier=$PACKAGE_NAME
 
-      - name: Change Android App Icons
+      - name: Change Android App Icons for First App
         script: cp $ANDROID_ICON_PATH android/app/src/main/res/mipmap/ic_launcher.png
 
-      - name: Change iOS App Icons
+      - name: Change iOS App Icons for First App
         script: cp $IOS_ICON_PATH ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
 
-      - name: Change App Name
+      - name: Change App Name for First App
         script: |
           sed -i '' "s/android:label=\"OldAppName\"/android:label=\"$APP_NAME\"/" android/app/src/main/AndroidManifest.xml
           flutter pub run flutter_launcher_name:main --app-name=$APP_NAME
 
-      - name: Apply Theme Color
+      - name: Apply Theme Color for First App
         script: |
-          # Use the THEME_COLOR variable in your code to dynamically set the theme color
+          # Use the THEME_COLOR variable in your code to dynamically set the theme color for First App
 
-      - name: Run tests
+      - name: Run tests for First App
+        script: flutter test
+
+  secondApp-workflow:
+    name: Second App Workflow
+    environment:
+      flutter: stable
+      groups:
+        - app: secondApp
+          APP_NAME: "SecondApp"
+          PACKAGE_NAME: "com.example.secondapp"
+          ANDROID_ICON_PATH: "path_to_secondapp_android_icon.png"
+          IOS_ICON_PATH: "path_to_secondapp_ios_icon.png"
+          THEME_COLOR: "#00FF00" # Replace with your desired theme color for secondApp
+
+    scripts:
+      - name: Install dependencies for Second App
+        script: flutter pub get
+
+      - name: Change Android Package Name for Second App
+        script: |
+          sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME'/" android/app/build.gradle
+          sed -i '' "s/com.example/$PACKAGE_NAME/" android/app/src/main/AndroidManifest.xml
+
+      - name: Change iOS Bundle Identifier for Second App
+        script: flutter pub run flutter_launcher_name:main --bundle-identifier=$PACKAGE_NAME
+
+      - name: Change Android App Icons for Second App
+        script: cp $ANDROID_ICON_PATH android/app/src/main/res/mipmap/ic_launcher.png
+
+      - name: Change iOS App Icons for Second App
+        script: cp $IOS_ICON_PATH ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon.png
+
+      - name: Change App Name for Second App
+        script: |
+          sed -i '' "s/android:label=\"OldAppName\"/android:label=\"$APP_NAME\"/" android/app/src/main/AndroidManifest.xml
+          flutter pub run flutter_launcher_name:main --app-name=$APP_NAME
+
+      - name: Apply Theme Color for Second App
+        script: |
+          # Use the THEME_COLOR variable in your code to dynamically set the theme color for Second App
+
+      - name: Run tests for Second App
         script: flutter test
