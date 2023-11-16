@@ -6,7 +6,6 @@ workflows:
 scripts:
   - name: Build for iOS         
     script: flutter build ios      
-- name: Change Android package name
-  script: | 
+script: | 
     echo "android {  defaultConfig { applicationId '${PACKAGE_NAME}' }  }" > android/changePackage.gradle
     echo "apply from: rootProject.file('changePackage.gradle')" >> android/app/build.gradle
