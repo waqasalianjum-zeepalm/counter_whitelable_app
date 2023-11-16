@@ -3,11 +3,7 @@ workflows:
     name: First App Workflow
     environment:
       flutter: stable
-      APP_NAME_FIRST: "FirstApp"
-      PACKAGE_NAME_FIRST: "com.example.firstapp"
-      ANDROID_ICON_PATH_FIRST: "path_to_firstapp_android_icon.png"
-      IOS_ICON_PATH_FIRST: "path_to_firstapp_ios_icon.png"
-      THEME_COLOR_FIRST: "#FF0000" 
+     
 
     scripts:
       - name: Install dependencies for First App
@@ -43,11 +39,7 @@ workflows:
     name: Second App Workflow
     environment:
       flutter: stable
-      APP_NAME_SECOND: "SecondApp"
-      PACKAGE_NAME_SECOND: "com.example.secondapp"
-      ANDROID_ICON_PATH_SECOND: "path_to_secondapp_android_icon.png"
-      IOS_ICON_PATH_SECOND: "path_to_secondapp_ios_icon.png"
-      THEME_COLOR_SECOND: "#00FF00"
+    
 
     scripts:
       - name: Install dependencies for Second App
