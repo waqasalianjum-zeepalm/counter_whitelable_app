@@ -14,11 +14,11 @@ workflows:
           sed -i '' "s/applicationId: 'com.example'/applicationId: '$PACKAGE_NAME_FIRST'/" android/app/build.gradle
           sed -i '' "s/com.example/$PACKAGE_NAME_FIRST/" android/app/src/main/AndroidManifest.xml
 
-      - name: Change App Name for First App
-        script: |
-         sed -i '' 's/android:label="counter_whitelabel_app"/android:label="NAMENAME"/' android/app/src/main/AndroidManifest.xml
-         flutter pub run flutter_launcher_name:main --app-name=NAMENAME
+   
 
+      - name: Change Android app name
+        script: 
+           sed -i.bak "s/android:label=.*/android:label="NAMENAME"/g" android/app/src/main/AndroidManifest.xml
 
       - name: Apply Theme Color for First App
         script: |
