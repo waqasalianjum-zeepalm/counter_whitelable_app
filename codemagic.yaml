@@ -26,6 +26,8 @@ workflows:
 
       - name: Run tests for First App
         script: flutter test
+      - name: Build APK
+        script: flutter build apk --release --split-per-abi
 
   secondApp-workflow:
     name: Second App Workflow
