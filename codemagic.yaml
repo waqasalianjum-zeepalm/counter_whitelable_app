@@ -1,4 +1,5 @@
 workflows:
+
   firstApp-workflow:
     name: First App Workflow
     max_build_duration: 120
@@ -25,39 +26,17 @@ workflows:
           # Use the THEME_COLOR_FIRST variable in your code to dynamically set the theme color for First App  
 
           # for change assets   
-      # - name: Get assets from Firebase Storage
-      # # # gs://prac-of-whitelable.appspot.com/assets/drawable-hdpi/new_cartisan_logo.png
-      #   script: |
-      #    FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
-      #    curl -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
-      #   gsutil -m cp -r gs://prac-of-whitelable.appspot.com/assets.zip ./android/app/src/main/res
 
       - name: Get assets from Firebase Storage
         script: | 
-          curl -o soco.png "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco.png.png?alt=media&token=0ef034c5-00c6-4ee2-bf89-6f7e15b3ff39"
-          mkdir -p ./assets/appIcon
-          mv soco.png ./assets/appIcon
+          curl -o "asset/appIcon/app_icon.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fapp_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae" && echo "File downloaded successfully" || echo "Download failed"
 
 
       - name: Generate Icons for First App
         script: |
-          flutter pub add dev:flutter_launcher_icons           
-          #!/bin/bash
-          if ! command -v yq &> /dev/null; then
-              echo "Error: yq is not installed. Please install yq (https://mikefarah.gitbook.io/yq/installation) to run this script."
-              exit 1
-          fi
-
-          # Configuration to add
-          CONFIG='
-          flutter_launcher_icons:
-            android: "launcher_icon"
-            ios: true
-            image_path: "assets/appIcon/soco.png"
-          '
-
-          # Add configuration to pubspec.yaml
-          yq eval "$CONFIG" -i pubspec.yaml
+          flutter pub add dev:flutter_launcher_icons
+          flutter pub get      
+          flutter pub run flutter_launcher_icons:main
 
       - name: Run tests for First App
         script: flutter test
@@ -65,7 +44,7 @@ workflows:
       - name: Build APK
         script: flutter build apk 
     artifacts:
-      - build/**/outputs/**/*.apk
+      - build/*/outputs//.apk
       - flutter_drive.log
 
   secondApp-workflow:
@@ -94,5 +73,3 @@ workflows:
 
       - name: Run tests for Second App
         script: flutter test
-
-
