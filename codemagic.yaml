@@ -33,7 +33,7 @@ workflows:
 
       - name: Get assets from Firebase Storage
         script: | 
-          gsutil -m cp -r gs://prac-of-whitelable.appspot.com/assets.zip ./android/app/src/main/res
+          firebase storage get assets.zip assets/* /android/app/src/main/res
 
 
       - name: Change Android icons
