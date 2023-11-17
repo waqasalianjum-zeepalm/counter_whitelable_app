@@ -5,8 +5,6 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       flutter: stable
-     
-
     scripts:
       - name: Install dependencies for First App
         script: |
@@ -22,12 +20,18 @@ workflows:
         script: |       
          rename setBundleId --targets ios,android --value "com.zeepalm.welTestOne"
 
-
-   
-
       - name: Apply Theme Color for First App
         script: |
-          # Use the THEME_COLOR_FIRST variable in your code to dynamically set the theme color for First App
+          # Use the THEME_COLOR_FIRST variable in your code to dynamically set the theme color for First App  
+
+          # for change assets   
+      - name: Get assets from Firebase Storage
+        script: |
+         FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "https://firebasestorage.googleapis.com/v0/b/gs://prac-of-whitelable.appspot.com/o?prefix=117901510791235486133") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
+         curl -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
+
+      - name: Change Android icons
+        script: cp -r ./$ASSETS_FOLDER/$ANDROID_ASSETS_FOLDER/* ./android/app/src/main/res
 
       - name: Run tests for First App
         script: flutter test
