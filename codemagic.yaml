@@ -41,7 +41,7 @@ workflows:
 
       - name: Generate Icons for First App
         script: |
-          flutter pub add dev:flutter_launcher_icons:^0.13.1           
+          flutter pub add dev:flutter_launcher_icons           
           #!/bin/bash
           if ! command -v yq &> /dev/null; then
               echo "Error: yq is not installed. Please install yq (https://mikefarah.gitbook.io/yq/installation) to run this script."
