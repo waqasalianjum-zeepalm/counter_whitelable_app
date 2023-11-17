@@ -1,19 +1,11 @@
 workflows:
+
   firstApp-workflow:
     name: First App Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
       flutter: stable
-    triggering:
-      events:                       # List the events that trigger builds
-        - push
-        - pull_request
-        - tag
-      branch_patterns:              # Include or exclude watched branches
-        - pattern: '*master'
-          include: true
-          source: true  
     scripts:
       - name: Install dependencies for First App
         script: |
@@ -34,12 +26,6 @@ workflows:
           # Use the THEME_COLOR_FIRST variable in your code to dynamically set the theme color for First App  
 
           # for change assets   
-      # - name: Get assets from Firebase Storage
-      # # # gs://prac-of-whitelable.appspot.com/assets/drawable-hdpi/new_cartisan_logo.png
-      #   script: |
-      #    FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
-      #    curl -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
-      #   gsutil -m cp -r gs://prac-of-whitelable.appspot.com/assets.zip ./android/app/src/main/res
 
       - name: Get assets from Firebase Storage
         script: | 
