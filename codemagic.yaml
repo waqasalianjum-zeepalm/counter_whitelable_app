@@ -19,7 +19,7 @@ workflows:
 
       - name: Change package name for First App
         script: |       
-         rename setBundleId --targets ios,android --value "com.zeepalm.welTestOne"
+         rename setBundleId --targets ios,android --value "com.zeepalm.wlTestOne"
 
       - name: Apply Theme Color for First App
         script: |
@@ -34,10 +34,10 @@ workflows:
 
       - name: Generate Icons for First App
         script: |
-          cat pubspec.yaml
           flutter pub add dev:flutter_launcher_icons
           flutter pub get      
-          flutter pub run flutter_launcher_icons:main
+          flutter pub run flutter_launcher_icons -f app_icons_config.yaml
+
 
       - name: Run tests for First App
         script: flutter test
