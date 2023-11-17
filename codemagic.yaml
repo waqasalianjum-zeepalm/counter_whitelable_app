@@ -36,7 +36,7 @@ workflows:
         script: |
           flutter pub add dev:flutter_launcher_icons
           flutter pub get      
-          flutter pub run flutter_launcher_icons -f app_icons_config.yaml
+          flutter pub run flutter_launcher_icons:main
 
 
       - name: Run tests for First App
