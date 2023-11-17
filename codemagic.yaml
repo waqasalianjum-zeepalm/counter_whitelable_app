@@ -34,7 +34,7 @@ workflows:
 
       - name: Get assets from Firebase Storage
         script: | 
-          curl -o app_icon.png "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco.png.png?alt=media&token=0ef034c5-00c6-4ee2-bf89-6f7e15b3ff39"
+          curl -o app_icon.png "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fapp_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae"
           mv app_icon.png ./assets/appIcon
 
 
