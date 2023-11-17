@@ -24,7 +24,6 @@ workflows:
       - name: Apply Theme Color for First App
         script: |
           # Use the THEME_COLOR_FIRST variable in your code to dynamically set the theme color for First App  
-
           # for change assets   
 
       - name: Get assets from Firebase Storage
@@ -33,11 +32,11 @@ workflows:
       - name: Generate Icons for First App
         script: |  
           flutter pub run flutter_launcher_icons:main
-
-
+      - name: Changing header Icon
+        script: |
+          curl -o "assets/appIcon/header_icon.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fheader_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae" && echo "File downloaded successfully" || echo "Download failed"    
       - name: Run tests for First App
         script: flutter test
-
       - name: Build APK
         script: flutter build apk 
     artifacts:
