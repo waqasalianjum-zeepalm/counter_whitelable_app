@@ -43,7 +43,7 @@ workflows:
       - name: Build APK
         script: flutter build apk 
     artifacts:
-      - build/*/outputs//.apk
+      - build/**/outputs/**/*.apk
       - flutter_drive.log
 
   secondApp-workflow:
