@@ -33,9 +33,7 @@ workflows:
 
 
       - name: Generate Icons for First App
-        script: |
-          flutter pub add dev:flutter_launcher_icons
-          flutter pub get      
+        script: |  
           flutter pub run flutter_launcher_icons:main
 
 
