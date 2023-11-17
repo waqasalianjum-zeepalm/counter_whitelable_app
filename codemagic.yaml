@@ -34,9 +34,32 @@ workflows:
 
       - name: Get assets from Firebase Storage
         script: | 
-         curl -o assets.zip "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/assets.zip?alt=media&token=1f81bf97-6592-494b-b76e-d0ef6f0d40c0"
-         unzip assets.zip -d ./android/app/src/main/res
+          curl -o soco.png "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco.png.png?alt=media&token=0ef034c5-00c6-4ee2-bf89-6f7e15b3ff39"
+          mkdir -p ./assets/appIcon
+          mv soco.png ./assets/appIcon
 
+
+      - name: Generate Icons for First App
+        script: |
+          flutter pub get
+          flutter pub add dev:flutter_launcher_icons:^0.13.1  
+          flutter pub get         
+          #!/bin/bash
+          if ! command -v yq &> /dev/null; then
+              echo "Error: yq is not installed. Please install yq (https://mikefarah.gitbook.io/yq/installation) to run this script."
+              exit 1
+          fi
+
+          # Configuration to add
+          CONFIG='
+          flutter_launcher_icons:
+            android: "launcher_icon"
+            ios: true
+            image_path: "assets/appIcon/soco.png"
+          '
+
+          # Add configuration to pubspec.yaml
+          yq eval "$CONFIG" -i pubspec.yaml
 
       - name: Run tests for First App
         script: flutter test
@@ -73,3 +96,5 @@ workflows:
 
       - name: Run tests for Second App
         script: flutter test
+
+
