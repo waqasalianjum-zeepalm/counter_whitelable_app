@@ -28,7 +28,7 @@ workflows:
       - name: Get assets from Firebase Storage
       # gs://prac-of-whitelable.appspot.com/assets/drawable-hdpi/new_cartisan_logo.png
         script: |
-         FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets/o?prefix=117901510791235486133") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
+         FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets/") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
          curl -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
 
       - name: Change Android icons
