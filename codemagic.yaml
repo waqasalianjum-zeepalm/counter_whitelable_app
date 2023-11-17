@@ -30,8 +30,6 @@ workflows:
       - name: Get assets from Firebase Storage
         script: | 
           curl -o "assets/appIcon/app_icon.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fapp_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae" && echo "File downloaded successfully" || echo "Download failed"
-
-
       - name: Generate Icons for First App
         script: |  
           flutter pub run flutter_launcher_icons:main
@@ -50,7 +48,6 @@ workflows:
     name: Second App Workflow
     environment:
       flutter: stable
-    
 
     scripts:
       - name: Install dependencies for Second App
