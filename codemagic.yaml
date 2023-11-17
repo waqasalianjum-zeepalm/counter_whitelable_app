@@ -36,7 +36,6 @@ workflows:
         script: | 
           firebase login
           FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
-           curl -H "Authorization: Bearer $72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip/* ./android/app/src/main/res
          
       - name: Change Android icons
         script: cp -r ./$ASSETS_FOLDER/$ANDROID_ASSETS_FOLDER/* ./android/app/src/main/res
