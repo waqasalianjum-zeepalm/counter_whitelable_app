@@ -34,7 +34,7 @@ workflows:
 
       - name: Get assets from Firebase Storage
         script: | 
-          FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
+          FILE_URL=$(gsutil --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
           gsutil -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
 
 
