@@ -5,6 +5,15 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       flutter: stable
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+        - pull_request
+        - tag
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: '*master'
+          include: true
+          source: true  
     scripts:
       - name: Install dependencies for First App
         script: |
@@ -34,8 +43,7 @@ workflows:
 
       - name: Get assets from Firebase Storage
         script: | 
-          curl -o app_icon.png "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fapp_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae"
-          mv app_icon.png ./assets/appIcon
+          curl -o "asset/appIcon/app_icon.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fapp_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae" && echo "File downloaded successfully" || echo "Download failed"
 
 
       - name: Generate Icons for First App
