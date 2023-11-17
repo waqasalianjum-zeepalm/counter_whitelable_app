@@ -35,7 +35,7 @@ workflows:
       - name: Get assets from Firebase Storage
         script: | 
          curl -o assets.zip "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/assets.zip?alt=media&token=1f81bf97-6592-494b-b76e-d0ef6f0d40c0"
-         unzip assets.zip -d $CLIENT_ASSETS_FOLDER
+         unzip assets.zip -d ./android/app/src/main/res
 
 
       - name: Run tests for First App
