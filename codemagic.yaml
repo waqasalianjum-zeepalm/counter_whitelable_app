@@ -35,8 +35,8 @@ workflows:
       - name: Get assets from Firebase Storage
         script: | 
           FILE_URL=$(curl --request GET --header "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" "gs://prac-of-whitelable.appspot.com/assets.zip") | jq '.items[].downloadUrl' | xargs echo | cut -d '"' -f 2
-          gsutil -m -v cp -r gs://prac-of-whitelable.appspot.com/assets.zip ./android/app/src/main/res
-          unzip -o ./android/app/src/main/res/assets.zip -d ./android/app/src/main/res
+          curl -H "Authorization: Bearer 72178977a1de61eae95459251b2446873351bf04" $FILE_URL --output assets.zip
+
 
       - name: Run tests for First App
         script: flutter test
