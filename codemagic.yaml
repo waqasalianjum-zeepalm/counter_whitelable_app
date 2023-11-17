@@ -33,7 +33,9 @@ workflows:
 
 
       - name: Generate Icons for First App
-        script: |      
+        script: |
+          flutter pub add flutter_launcher_icons
+          flutter pub get      
           flutter pub run flutter_launcher_icons:main
 
       - name: Run tests for First App
