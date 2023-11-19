@@ -39,12 +39,8 @@ workflows:
         script: |
           curl -o "assets/splash_image/splash.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fsplash.jpg?alt=media&token=2a61643a-2755-4179-8566-e029bf5d0f27" && echo "Splash Image  downloaded successfully" || echo "Download failed"   
           flutter pub run flutter_native_splash:create
-          flutter_native_splash:
-            android: true
-            ios: true
-            image: assets/splash_image/splash.jpg
-            color: "#FCCF00"
-                        
+          
+                 
       - name: Run tests for First App
         script: flutter test
       - name: Build APK
