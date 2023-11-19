@@ -38,6 +38,7 @@ workflows:
       - name: Creating SplashScreen for Android and IOS
         script: |
           curl -o "assets/splash_image/splash.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fsplash.jpg?alt=media&token=2a61643a-2755-4179-8566-e029bf5d0f27" && echo "Splash Image  downloaded successfully" || echo "Download failed"   
+          flutter pub run flutter_native_splash:create
                  
       - name: Run tests for First App
         script: flutter test
