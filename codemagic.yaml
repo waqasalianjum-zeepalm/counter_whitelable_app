@@ -37,7 +37,7 @@ workflows:
           curl -o "assets/header/header_icon.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fheader_icon.png?alt=media&token=cfef5ee5-74d2-47c8-92cd-2f67dd5a92ae" && echo "File downloaded successfully" || echo "Download failed"   
       - name: Creating SplashScreen for Android and IOS
         script: |
-          curl -o "assets/splash/splash.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fsplash.jpg?alt=media&token=2a61643a-2755-4179-8566-e029bf5d0f27" && echo "File downloaded successfully" || echo "Download failed"   
+          curl -o "assets/splash_image/splash.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fsplash.jpg?alt=media&token=2a61643a-2755-4179-8566-e029bf5d0f27" && echo "File downloaded successfully" || echo "Download failed"   
                  
       - name: Run tests for First App
         script: flutter test
