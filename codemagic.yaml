@@ -38,7 +38,7 @@ workflows:
       - name: Creating SplashScreen for Android and IOS
         script: |
           curl -o "assets/splash_image/splash.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fsplash.jpg?alt=media&token=2a61643a-2755-4179-8566-e029bf5d0f27" && echo "Splash Image  downloaded successfully" || echo "Download failed"  
-          curl -o "assets/splash_image/backgrung.png" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fbackgrung.jpg?alt=media&token=8167f483-bdb1-4ff8-8464-e1d056443d4d" && echo "Background Image downloaded successfully" || echo "Download failed" 
+          curl -o "assets/splash_image/backgrung.jpg" "https://firebasestorage.googleapis.com/v0/b/prac-of-whitelable.appspot.com/o/soco%2Fbackgrung.jpg?alt=media&token=8167f483-bdb1-4ff8-8464-e1d056443d4d" && echo "Background Image downloaded successfully" || echo "Download failed" 
           flutter pub run flutter_native_splash:create
           
                  
