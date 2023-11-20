@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:counter_whitelabel_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -11,6 +14,7 @@ void main() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   pkgName = packageInfo.packageName;
   FlutterNativeSplash.remove();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -39,6 +43,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String name = '';
 
   void _incrementCounter() {
     setState(() {
@@ -63,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Image.asset('assets/header/header_icon.png'),
             ),
             Text(
-              'You have pushed the button this many times: $pkgName',
+              'You have pushed the button this many times: $pkgName and name is $name',
             ),
             Text(
               '$_counter',
@@ -73,10 +78,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () async {
+          name = await getUser();
+          setState(() {});
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
   }
+}
+
+Future<String> getUser() async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final DocumentSnapshot<Map<String, dynamic>> user =
+      await firestore.collection('name').doc("V6eu7UAIqvDNT0pYxJpi").get();
+  return user.data()!['class'];
 }
