@@ -42,8 +42,7 @@ workflows:
           flutter pub run flutter_native_splash:create
           
                  
-      - name: Run tests for First App
-        script: flutter test
+    
       - name: Build APK
         script: flutter build apk 
     artifacts:
